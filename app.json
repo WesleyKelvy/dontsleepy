@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dontsleep-mobile",
-    "slug": "dontsleep-mobile",
+    "name": "dontsleepy-app",
+    "slug": "dontsleepy-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
