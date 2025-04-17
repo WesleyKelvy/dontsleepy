@@ -51,7 +51,7 @@ export default function CadastroStep2() {
 
   const {
     control,
-    setValue, // needed to update the birthdate on onChange func.
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<Step2FormData>({
@@ -64,7 +64,7 @@ export default function CadastroStep2() {
 
   const onSubmit = (data: Step2FormData) => {
     updateFormData(data);
-    setCurrentStep(2);
+    setCurrentStep(3);
     router.push("./signUpStepThree");
   };
 

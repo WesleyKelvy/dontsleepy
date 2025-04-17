@@ -10,14 +10,12 @@ export default function SignUpLayout() {
           headerShown: false,
         }}
       >
-        <SignUpProvider >
           <Stack.Screen name="signUpStepOne" options={{ headerShown: false }} />
           <Stack.Screen name="signUpStepTwo" options={{ headerShown: false }} />
           <Stack.Screen
             name="signUpStepThree"
             options={{ headerShown: false }}
           />
-        </SignUpProvider>
       </Stack>
     </SignUpProvider>
   );

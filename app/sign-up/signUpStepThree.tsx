@@ -13,7 +13,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
 } from "react-native";
 import { MaskedTextInput } from "react-native-mask-text";
 import { z } from "zod";
@@ -27,7 +27,6 @@ const step3Schema = z.object({
 
 type Step3FormData = z.infer<typeof step3Schema>;
 
-// 
 const createUser = async (userData: any) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -67,7 +66,7 @@ export default function CadastroStep3() {
 
   const onSubmit = (data: Step3FormData) => {
     updateFormData(data);
-    setCurrentStep(3);
+    setCurrentStep(4);
 
     // Preparing data for request
     const completeData = {
@@ -152,25 +151,14 @@ export default function CadastroStep3() {
               <Text className="text-red-500 mb-4">{errors.cidade.message}</Text>
             )}
 
-            <Button isLoading={mutation.isPending} className="mt-8"  variant="default" size="default" onPress={handleSubmit(onSubmit)} title="Avançar"  />
-
-            {/* <TouchableOpacity
-              className={`${
-                mutation.isPending
-                  ? "bg-transparent border border-purple-600 text-purple-600"
-                  : "bg-purple-600"
-              }  py-4 rounded-lg items-center mt-8`}
+            <Button
+              isLoading={mutation.isPending}
+              className="mt-8"
+              variant="default"
+              size="default"
               onPress={handleSubmit(onSubmit)}
-              disabled={mutation.isPending}
-            >
-              <Text
-                className={`${
-                  mutation.isPending ? "text-purple-600" : "text-white"
-                } font-medium text-base`}
-              >
-                {mutation.isPending ? "Cadastrando" : "Cadastrar-me"}
-              </Text>
-            </TouchableOpacity> */}
+              title="Cadastrar-me"
+            />
           </View>
         </View>
       </KeyboardAvoidingView>

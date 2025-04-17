@@ -31,7 +31,7 @@ const CadastroContext = createContext<CadastroContextType | undefined>(undefined
 export const SignUpProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [formData, setFormData] = useState<Partial<CadastroFormData>>({});
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const totalSteps = 4;
 
   const updateFormData = (data: Partial<CadastroFormData>) => {
     setFormData(prevData => ({ ...prevData, ...data }));

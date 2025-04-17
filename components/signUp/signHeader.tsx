@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ProgressIndicator from "./progressIndicator";
 
 const SignHeader: React.FC = () => {
@@ -9,12 +9,12 @@ const SignHeader: React.FC = () => {
   };
 
   return (
-    <View className="w-full">
-      <View style={styles.container} >
-        <TouchableOpacity onPress={handleBack} >
-          <Text className="text-purple-600 text-3xl">&lt;</Text>
+    <View className="w-full flex-col gap-4">
+      <View style={styles.container}>
+        <TouchableOpacity onPress={handleBack}>
+          <Image source={require("@/assets/png-icons/turn-back-icon.png")} />
         </TouchableOpacity>
-        <Text className="text-purple-600 text-3xl font-medium">Cadastro</Text>
+        <Text className="text-purple-600 text-4xl font-bold">Cadastro</Text>
       </View>
       <ProgressIndicator />
     </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: "row",
     marginBlockEnd: 8,
-    // width: ,
-    gap: 8
+    alignItems: "center",
+    gap: 8,
   },
 });
