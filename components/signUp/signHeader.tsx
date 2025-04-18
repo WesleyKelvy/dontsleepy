@@ -10,7 +10,7 @@ const SignHeader: React.FC = () => {
 
   return (
     <View className="w-full flex-col gap-4">
-      <View style={styles.container}>
+      <View className="mt-2 flex-row mb-2 items-center gap-2">
         <TouchableOpacity onPress={handleBack}>
           <Image source={require("@/assets/png-icons/turn-back-icon.png")} />
         </TouchableOpacity>
@@ -22,14 +22,3 @@ const SignHeader: React.FC = () => {
 };
 
 export default SignHeader;
-
-const styles = StyleSheet.create({
-  container: {
-    marginBlockStart: 8,
-    flex: 0,
-    flexDirection: "row",
-    marginBlockEnd: 8,
-    alignItems: "center",
-    gap: 8,
-  },
-});

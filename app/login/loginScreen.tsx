@@ -34,6 +34,10 @@ const LoginScreen = () => {
     router.push("/sign-up/signUpStepOne");
   };
 
+  const navigateRecoverPassword = () => {
+    router.push("/recover-password/recoverPassword");
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
@@ -75,7 +79,10 @@ const LoginScreen = () => {
               />
             </View>
 
-            <TouchableOpacity className="mb-6">
+            <TouchableOpacity
+              className="mb-6"
+              onPress={navigateRecoverPassword}
+            >
               <Text className="text-purple-600">Esqueceu a senha?</Text>
             </TouchableOpacity>
 
