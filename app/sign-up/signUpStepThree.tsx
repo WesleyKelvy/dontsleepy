@@ -87,7 +87,7 @@ export default function CadastroStep3() {
           <SignHeader />
 
           {/* Form */}
-          <View className="mt-4">
+          <View className="mt-8">
             <Text className="text-lg font-medium mb-2">Informe seu CEP</Text>
             <Controller
               control={control}

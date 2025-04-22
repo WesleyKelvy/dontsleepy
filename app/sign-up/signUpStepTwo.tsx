@@ -78,8 +78,8 @@ export default function CadastroStep2() {
           <SignHeader />
 
           {/* Form */}
-          <View className="mt-4">
-            <Text className="text-lg font-medium mb-2">Informe seu name</Text>
+          <View className="mt-8">
+            <Text className="text-lg font-medium mb-2">Informe seu nome</Text>
             <Controller
               control={control}
               name="name"

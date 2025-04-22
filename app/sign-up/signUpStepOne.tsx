@@ -52,7 +52,7 @@ export default function SignUpStepOne() {
         <View className="flex-1 mt-16 p-6 w-full">
           <SignHeader />
 
-          <View className="mt-4">
+          <View className="mt-8">
             <Text className="text-lg font-medium mb-2">Informe seu e-mail</Text>
             <Controller
               control={control}
