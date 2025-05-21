@@ -1,10 +1,14 @@
 import { router } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import ProgressIndicator from "./progressIndicator";
+import { useCadastroContext } from "../../contexts/signUpContext";
 
 const SignHeader: React.FC = () => {
+  const { setCurrentStep, currentStep } = useCadastroContext();
+
   const handleBack = () => {
+    setCurrentStep(currentStep - 1);
     router.back();
   };
 

@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const cadastroSchema = z.object({
   // Step 1
   email: z.string().email('Email inválido'),
-  senha: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
+  password: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
   
   // Step 2
   name: z.string().min(2, 'Nome deve ter no mínimo 2 caracteres'),

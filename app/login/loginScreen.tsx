@@ -29,6 +29,9 @@ const LoginScreen = () => {
     console.log("Login com:", email, password);
     // Se login sucesso: navigation.navigate('Home');
   };
+  const navigateToHome = () => {
+    router.push("/home");
+  };
 
   const navigateToSignUp = () => {
     router.push("/sign-up/signUpStepOne");
@@ -91,6 +94,13 @@ const LoginScreen = () => {
               size="default"
               onPress={handleLogin}
               title="Entrar"
+            />
+
+            <Button
+              variant="default"
+              size="default"
+              onPress={navigateToHome}
+              title="TABS"
             />
           </View>
 
