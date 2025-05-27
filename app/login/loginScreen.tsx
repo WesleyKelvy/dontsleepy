@@ -11,10 +11,14 @@ import {
   View,
 } from "react-native";
 import Button from "../../components/ui/Button";
+import api from "@/utils/api";
+// @ts-ignore
+import Toast from "react-native-toast-message";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // const { isLoading, error } = useQuery({
   //   queryKey: ['authStatus'],
@@ -25,9 +29,37 @@ const LoginScreen = () => {
   //   enabled: false, // Desativado por padrão, ative conforme necessário
   // });
 
-  const handleLogin = () => {
-    console.log("Login com:", email, password);
-    // Se login sucesso: navigation.navigate('Home');
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
+      // Salve o token JWT conforme necessário (ex: AsyncStorage, Context, etc)
+      // Exemplo: await AsyncStorage.setItem('token', response.data.token);
+      console.log("Login bem-sucedido!", response.data);
+      router.push("/(tabs)");
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        Toast.show({
+          type: "error",
+          text1: "Email ou senha incorretos",
+          position: "top",
+          visibilityTime: 3000,
+        });
+      } else {
+        Toast.show({
+          type: "error",
+          text1: "Erro ao fazer login",
+          text2: "Tente novamente mais tarde.",
+          position: "top",
+          visibilityTime: 3000,
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const navigateToSignUp = () => {
@@ -91,6 +123,7 @@ const LoginScreen = () => {
               size="default"
               onPress={handleLogin}
               title="Entrar"
+              isLoading={isLoading}
             />
           </View>
 

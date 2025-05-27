@@ -11,6 +11,8 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "@/global.css";
+// @ts-ignore
+import Toast from "react-native-toast-message";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
@@ -45,6 +47,7 @@ export default function RootLayout() {
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
+        <Toast />
         <StatusBar style="auto" />
       </ThemeProvider>
     </QueryClientProvider>
