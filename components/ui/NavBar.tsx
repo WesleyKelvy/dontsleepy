@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 export default function BottomNavbar() {
@@ -14,14 +14,14 @@ export default function BottomNavbar() {
       <TouchableOpacity onPress={() => router.push("/home")}>
         <View className="items-center">
           <Feather name="home" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Home</Text>
+          <Text className="text-xs text-gray-500">Início</Text>
         </View>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push("/search")}>
         <View className="items-center">
           <Feather name="search" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Search</Text>
+          <Text className="text-xs text-gray-500">Buscar</Text>
         </View>
       </TouchableOpacity>
 
@@ -35,14 +35,14 @@ export default function BottomNavbar() {
       <TouchableOpacity onPress={() => router.push("/monitoring")}>
         <View className="items-center">
           <FontAwesome5 name="low-vision" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Monitoring</Text>
+          <Text className="text-xs text-gray-500">Monitoramento</Text>
         </View>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push("/profile")}>
         <View className="items-center">
           <Feather name="user" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Profile</Text>
+          <Text className="text-xs text-gray-500">Perfil</Text>
         </View>
       </TouchableOpacity>
     </View>

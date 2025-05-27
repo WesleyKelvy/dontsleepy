@@ -4,11 +4,19 @@ import {
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import BottomNavbar from "@/components/ui/NavBar";
+import { removeToken } from "@/utils/auth";
+import { router } from "expo-router";
 
 export default function ProfileScreen() {
+  const handleLogout = async () => {
+    await removeToken();
+    router.replace("/login/loginScreen");
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="px-6 pt-24">
@@ -64,6 +72,15 @@ export default function ProfileScreen() {
           />
         </View>
       </ScrollView>
+
+      {/* Botão de logout */}
+      <View className="items-center mt-8 mb-24">
+        <TouchableOpacity onPress={handleLogout}>
+          <Text className="text-base text-red-500 underline font-bold">
+            Sair da conta
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <BottomNavbar />
     </SafeAreaView>

@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Button from "../../components/ui/Button";
 import api from "@/utils/api";
+import { saveToken } from "@/utils/auth";
 // @ts-ignore
 import Toast from "react-native-toast-message";
 
@@ -37,10 +38,30 @@ const LoginScreen = () => {
         password,
       });
       // Salve o token JWT conforme necessário (ex: AsyncStorage, Context, etc)
-      // Exemplo: await AsyncStorage.setItem('token', response.data.token);
+      console.log("Resposta do backend ao fazer login:", response.data);
+      if (response.data?.token) {
+        await saveToken(response.data.token);
+      } else if (response.data?.accessToken) {
+        await saveToken(response.data.accessToken);
+      } else if (response.data?.jwt) {
+        await saveToken(response.data.jwt);
+      } else if (response.data?.access_token) {
+        await saveToken(response.data.access_token);
+      } else if (
+        typeof response.data === "string" &&
+        response.data.length > 20
+      ) {
+        await saveToken(response.data);
+      } else {
+        throw new Error(
+          "Token JWT não retornado pelo backend. Resposta:",
+          response.data
+        );
+      }
       console.log("Login bem-sucedido!", response.data);
-      router.push("/(tabs)");
+      router.push("/home");
     } catch (error: any) {
+      console.error("Erro ao fazer login:", error, error?.response?.data);
       if (error.response && error.response.status === 401) {
         Toast.show({
           type: "error",
@@ -129,12 +150,12 @@ const LoginScreen = () => {
               isLoading={isLoading}
             />
 
-            <Button
+            {/* <Button
               variant="default"
               size="default"
               onPress={navigateToHome}
               title="TABS"
-            />
+            /> */}
           </View>
 
           <View className="items-center mb-6">
