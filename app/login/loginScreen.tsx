@@ -61,6 +61,9 @@ const LoginScreen = () => {
       setIsLoading(false);
     }
   };
+  const navigateToHome = () => {
+    router.push("/home");
+  };
 
   const navigateToSignUp = () => {
     router.push("/sign-up/signUpStepOne");
@@ -124,6 +127,13 @@ const LoginScreen = () => {
               onPress={handleLogin}
               title="Entrar"
               isLoading={isLoading}
+            />
+
+            <Button
+              variant="default"
+              size="default"
+              onPress={navigateToHome}
+              title="TABS"
             />
           </View>
 
