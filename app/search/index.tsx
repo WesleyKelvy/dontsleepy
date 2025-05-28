@@ -1,68 +1,80 @@
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import BottomNavbar from "@/components/ui/NavBar";
+import { SearchCard } from "../../components/ui/searchCard";
+import { Header } from "../../components/ui/header";
 
 export default function SearchScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="px-6 pt-24">
-        {/* Header com nome, pontos e avatar */}
-        <View className="flex-row justify-between items-center mb-6">
-          <View>
-            <Text className="text-purple-600 font-bold text-2xl">Jhon Doe</Text>
-            <View className="flex-row items-center">
-              <Image
-                source={require("@/assets/png-icons/wallet_icon.png")} 
-                className="w-4 h-4 mr-1"
-              />
-              <Text className="text-md text-gray-500">200 pontos</Text>
-            </View>
-          </View>
-          <Image
-            source={require("@/assets/images/profile_photo.png")}
-            className="w-12 h-12 rounded-full"
-          />
-        </View>
+      <View className="px-6 pt-24">
+        {/* Header */}
+        <Header
+          image={require("@/assets/images/profile_photo.png")}
+          name="John Doe"
+          points="200"
+        />
 
-        {/* Cupom 1 */}
-        <View className="mb-6">
-          <Image
-            source={require("@/assets/images/ifood-banner.png")}
-            className="w-full h-40 rounded-xl mb-2"
-            resizeMode="cover"
+        <ScrollView className="rounded-xl">
+          {/* Cupom 1 */}
+          <SearchCard
+            image={require("@/assets/images/ifood-banner.png")}
+            points="50"
+            text="  20% de desconto no seu pedido ifood"
           />
-          <Text className="text-purple-600 font-semibold">
-            20% de desconto no seu pedido ifood
-          </Text>
-          <Text className="text-sm text-gray-400">50 pontos</Text>
-        </View>
 
-        {/* Cupom 2 */}
-        <View className="mb-6">
-          <Image
-            source={require("@/assets/images/unifap-banner.png")}
-            className="w-full h-40 rounded-xl mb-2"
-            resizeMode="cover"
+          {/* Cupom 2 */}
+          <SearchCard
+            image={require("@/assets/images/unifap-banner.png")}
+            text="20% de desconto na UNIFAP"
+            points="100 pontos"
           />
-          <Text className="text-purple-600 font-semibold">
-            20% de desconto na UNIFAP
-          </Text>
-          <Text className="text-sm text-gray-400">100 pontos</Text>
-        </View>
 
-        {/* Cupom 3 */}
-        <View className="mb-24">
-          <Image
-            source={require("@/assets/images/steam-banner.png")}
-            className="w-full h-40 rounded-xl mb-2"
-            resizeMode="cover"
+          {/* Cupom 3 */}
+          <SearchCard
+            image={require("@/assets/images/steam-banner.png")}
+            text="10% off em lojas geek e games"
+            points="80 pontos"
           />
-          <Text className="text-purple-600 font-semibold">
-            10% off em lojas geek e games
-          </Text>
-          <Text className="text-sm text-gray-400">80 pontos</Text>
-        </View>
-      </ScrollView>
 
+          {/* Cupom 2 */}
+          <SearchCard
+            image={require("@/assets/images/unifap-banner.png")}
+            text="20% de desconto na UNIFAP"
+            points="100 pontos"
+          />
+
+          {/* Cupom 3 */}
+          <SearchCard
+            image={require("@/assets/images/steam-banner.png")}
+            text="10% off em lojas geek e games"
+            points="80 pontos"
+          />{/* Cupom 2 */}
+          <SearchCard
+            image={require("@/assets/images/unifap-banner.png")}
+            text="20% de desconto na UNIFAP"
+            points="100 pontos"
+          />
+
+          {/* Cupom 3 */}
+          <SearchCard
+            image={require("@/assets/images/steam-banner.png")}
+            text="10% off em lojas geek e games"
+            points="80 pontos"
+          />{/* Cupom 2 */}
+          <SearchCard
+            image={require("@/assets/images/unifap-banner.png")}
+            text="20% de desconto na UNIFAP"
+            points="100 pontos"
+          />
+
+          {/* Cupom 3 */}
+          <SearchCard
+            image={require("@/assets/images/steam-banner.png")}
+            text="10% off em lojas geek e games"
+            points="80 pontos"
+          />
+        </ScrollView>
+      </View>
       <BottomNavbar />
     </SafeAreaView>
   );

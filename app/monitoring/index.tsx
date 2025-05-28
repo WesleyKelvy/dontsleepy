@@ -17,12 +17,10 @@ export default function MonitoringScreen() {
         </Text>
       </View>
 
-      {/* Conteúdo */}
-      <View className="flex-1 justify-center items-center">
-        {/* Você pode adicionar aqui gráficos, mapas, status ou sensores futuramente */}
-      </View>
+      {/* Content */}
+      <View className="flex-1 justify-center items-center"></View>
 
-      {/* Botão Iniciar */}
+      {/* Start Button */}
       <View className="px-6 pb-10">
         <TouchableOpacity className="bg-purple-600 rounded-full py-3 items-center">
           <Text className="text-white text-lg font-semibold">Iniciar</Text>
