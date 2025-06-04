@@ -32,7 +32,7 @@ const step3Schema = z.object({
 type Step3FormData = z.infer<typeof step3Schema>;
 
 const createUser = async (userData: any) => {
-  // Ajuste os campos conforme o backend espera
+  // Ajuste dos campos conforme o backend espera
   // Converte birthdate para ISO (YYYY-MM-DDT00:00:00.000Z)
   let birthDateISO = userData.birthdate;
   if (birthDateISO && birthDateISO.includes("/")) {
@@ -43,11 +43,20 @@ const createUser = async (userData: any) => {
   if (birthDateISO && birthDateISO.length === 10) {
     birthDateISO = `${birthDateISO}T00:00:00.000Z`;
   }
+  // Garante que password está correto
+  const password =
+    userData.password ||
+    userData.senha ||
+    (userData && userData["password"]) ||
+    "";
+  if (!password || typeof password !== "string") {
+    throw new Error("Senha não informada corretamente no cadastro.");
+  }
   // Log para debug do payload
   console.log("Payload enviado para o backend:", {
     email: userData.email,
     name: userData.name,
-    password: userData.senha,
+    password,
     birthDate: birthDateISO,
     cep: userData.cep,
     cidade: userData.cidade || userData.cityName,
@@ -60,11 +69,11 @@ const createUser = async (userData: any) => {
   const payload = {
     email: userData.email,
     name: userData.name,
-    password: userData.senha, // backend espera 'password'
+    password,
     birthDate: birthDateISO,
     cep: userData.cep,
     cidade: userData.cidade || userData.cityName,
-    uf: userData.estado || userData.state, // backend espera 'uf'
+    uf: userData.estado || userData.state,
     estado: userData.estado || userData.state, // backend espera 'estado' também
     bairro: userData.bairro || "",
     rua: userData.rua || "",
