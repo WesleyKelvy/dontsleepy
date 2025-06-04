@@ -10,8 +10,10 @@ import {
 import { useEffect, useState } from "react";
 import api from "@/utils/api";
 import { getToken } from "@/utils/auth";
+import { useRouter } from "expo-router";
 
 export default function EditProfileScreen() {
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -83,6 +85,9 @@ export default function EditProfileScreen() {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMsg("Dados atualizados com sucesso!");
+      setTimeout(() => {
+        router.replace("/profile");
+      }, 1200);
     } catch (e: any) {
       setMsg(e?.response?.data?.message || "Erro ao atualizar dados.");
     } finally {
