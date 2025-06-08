@@ -6,7 +6,7 @@ import { Header } from "../../components/ui/header";
 export default function SearchScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="px-6 pt-24">
+      <View className="px-6 pt-24 pb-24 ">
         {/* Header */}
         <Header
           image={require("@/assets/images/profile_photo.png")}
