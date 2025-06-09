@@ -1,19 +1,14 @@
-import { WebView } from 'react-native-webview';
-import Constants from 'expo-constants';
-import { StyleSheet } from 'react-native';
+import { View } from "react-native";
+import TopContent from "../../components/monitoring/topContent";
+import WebViewComponent from "../../components/monitoring/webViewComponent";
 
-export default function App() {
+export default function MonitoringScreen() {
   return (
-    <WebView
-      style={styles.container}
-      source={{ uri: 'https://jsso0.github.io/face-detection-app/' }}
-    />
+    <View className="flex-1 bg-white">
+      {/* Top Bar */}
+      <TopContent />
+      {/* Content */}
+      <WebViewComponent />
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-});
