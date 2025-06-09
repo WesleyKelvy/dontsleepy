@@ -1,5 +1,6 @@
 import SignHeader from "@/components/signUp/signHeader";
 import { useCadastroContext } from "@/contexts/signUpContext";
+import api from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
@@ -18,7 +19,6 @@ import {
 import { MaskedTextInput } from "react-native-mask-text";
 import { z } from "zod";
 import Button from "../../components/ui/Button";
-import api from "@/utils/api";
 
 const step3Schema = z.object({
   cep: z.string().regex(/^[0-9]{5}-[0-9]{3}$/, "CEP inválido."),
@@ -146,7 +146,6 @@ export default function CadastroStep3() {
 
   const onSubmit = (data: Step3FormData) => {
     updateFormData(data);
-    setCurrentStep(4);
 
     // Preparing data for request
     const completeData = {

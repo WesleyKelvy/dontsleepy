@@ -1,5 +1,7 @@
 import { router } from "expo-router";
 // import { useQuery } from '@tanstack/react-query';
+import api from "@/utils/api";
+import { saveToken } from "@/utils/auth";
 import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -11,8 +13,6 @@ import {
   View,
 } from "react-native";
 import Button from "../../components/ui/Button";
-import api from "@/utils/api";
-import { saveToken } from "@/utils/auth";
 // @ts-ignore
 import Toast from "react-native-toast-message";
 
@@ -20,15 +20,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  // const { isLoading, error } = useQuery({
-  //   queryKey: ['authStatus'],
-  //   queryFn: async () => {
-  //     // Verificar status de autenticação ou outras operações
-  //     return { isAuthenticated: false };
-  //   },
-  //   enabled: false, // Desativado por padrão, ative conforme necessário
-  // });
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -82,9 +73,10 @@ const LoginScreen = () => {
       setIsLoading(false);
     }
   };
-  const navigateToHome = () => {
-    router.push("/home");
-  };
+
+  // const navigateToHome = () => {
+  //   router.push("/home");
+  // };
 
   const navigateToSignUp = () => {
     router.push("/sign-up/signUpStepOne");
@@ -149,13 +141,6 @@ const LoginScreen = () => {
               title="Entrar"
               isLoading={isLoading}
             />
-
-            {/* <Button
-              variant="default"
-              size="default"
-              onPress={navigateToHome}
-              title="TABS"
-            /> */}
           </View>
 
           <View className="items-center mb-6">
