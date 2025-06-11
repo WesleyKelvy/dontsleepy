@@ -11,3 +11,11 @@ export const getToken = async (): Promise<string | null> => {
 export const removeToken = async () => {
   await AsyncStorage.removeItem("token");
 };
+
+export const setUserData = async (name: string) => {
+  await AsyncStorage.setItem("userData", name);
+};
+
+export const getUserData = async () => {
+  return await AsyncStorage.getItem("userData");
+};

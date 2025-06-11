@@ -1,9 +1,11 @@
 import SignHeader from "@/components/signUp/signHeader";
+import SignUpSuccess from "@/components/signUp/successfulcomponent";
 import { useCadastroContext } from "@/contexts/signUpContext";
+import api from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
-import React from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   Alert,
@@ -18,7 +20,6 @@ import {
 import { MaskedTextInput } from "react-native-mask-text";
 import { z } from "zod";
 import Button from "../../components/ui/Button";
-import api from "@/utils/api";
 
 const step3Schema = z.object({
   cep: z.string().regex(/^[0-9]{5}-[0-9]{3}$/, "CEP inválido."),
@@ -85,7 +86,12 @@ const createUser = async (userData: any) => {
 
 export default function CadastroStep3() {
   const { updateFormData, formData, setCurrentStep } = useCadastroContext();
-  const [cepLoading, setCepLoading] = React.useState(false);
+  const [cepLoading, setCepLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const navigateToLoginScreen = (): void => {
+    return router.push("/login/loginScreen");
+  };
 
   const {
     control,
@@ -128,9 +134,7 @@ export default function CadastroStep3() {
   const mutation = useMutation({
     mutationFn: createUser,
     onSuccess: () => {
-      Alert.alert("Sucesso", "Cadastro realizado com sucesso!", [
-        { text: "OK", onPress: () => router.push("/") },
-      ]);
+      setShowSuccess(true);
     },
     onError: (error: any) => {
       let msg = "Ocorreu um erro ao realizar o cadastro.";
@@ -146,7 +150,6 @@ export default function CadastroStep3() {
 
   const onSubmit = (data: Step3FormData) => {
     updateFormData(data);
-    setCurrentStep(4);
 
     // Preparing data for request
     const completeData = {
@@ -156,6 +159,11 @@ export default function CadastroStep3() {
 
     mutation.mutate(completeData);
   };
+
+  // Show success component when registration is successful
+  if (showSuccess) {
+    return <SignUpSuccess onContinue={navigateToLoginScreen} />;
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-white">

@@ -65,7 +65,7 @@ export default function CadastroStep2() {
   const onSubmit = (data: Step2FormData) => {
     updateFormData(data);
     setCurrentStep(3);
-    router.push("./signUpStepThree");
+    router.push("/sign-up/signUpStepThree");
   };
 
   return (

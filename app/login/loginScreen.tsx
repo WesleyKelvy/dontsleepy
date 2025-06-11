@@ -1,6 +1,8 @@
 import { router } from "expo-router";
 // import { useQuery } from '@tanstack/react-query';
-import React, { useState } from "react";
+import api from "@/utils/api";
+import { saveToken } from "@/utils/auth";
+import { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -8,11 +10,10 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
   View,
 } from "react-native";
 import Button from "../../components/ui/Button";
-import api from "@/utils/api";
-import { saveToken } from "@/utils/auth";
 // @ts-ignore
 import Toast from "react-native-toast-message";
 
@@ -20,15 +21,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  // const { isLoading, error } = useQuery({
-  //   queryKey: ['authStatus'],
-  //   queryFn: async () => {
-  //     // Verificar status de autenticação ou outras operações
-  //     return { isAuthenticated: false };
-  //   },
-  //   enabled: false, // Desativado por padrão, ative conforme necessário
-  // });
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -82,9 +74,10 @@ const LoginScreen = () => {
       setIsLoading(false);
     }
   };
-  const navigateToHome = () => {
-    router.push("/home");
-  };
+
+  // const navigateToHome = () => {
+  //   router.push("/home");
+  // };
 
   const navigateToSignUp = () => {
     router.push("/sign-up/signUpStepOne");
@@ -102,9 +95,13 @@ const LoginScreen = () => {
       >
         <View className="flex-1 p-6 justify-between">
           <View className="items-center mt-10 mb-6">
-            <View className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center">
+            <Image
+              source={require("@/assets/images/Dont-Sleepy-Logo.png")}
+              className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center"
+            />
+            {/* <View className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center">
               <Text className="text-3xl font-bold">LOGO</Text>
-            </View>
+            </View> */}
           </View>
 
           <View className="mb-6">
@@ -149,13 +146,6 @@ const LoginScreen = () => {
               title="Entrar"
               isLoading={isLoading}
             />
-
-            {/* <Button
-              variant="default"
-              size="default"
-              onPress={navigateToHome}
-              title="TABS"
-            /> */}
           </View>
 
           <View className="items-center mb-6">
