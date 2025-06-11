@@ -1,4 +1,7 @@
+import api from "@/utils/api";
+import { getToken } from "@/utils/auth";
 import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import {
   Image,
   ImageSourcePropType,
@@ -14,8 +17,31 @@ interface headerProps {
   className?: string;
 }
 
-export const Header = ({ name, points, image, className }: headerProps) => {
+export const Header = ({ name, image, className }: headerProps) => {
+  const [loading, setIsLoading] = useState(false);
+  const [points, setPoints] = useState(0);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setIsLoading(true);
+
+      try {
+        const token = await getToken();
+        const response = await api.get("/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setPoints(response.data.points);
+      } catch (e: unknown) {
+        console.log(e);
+      } finally {
+        return;
+      }
+    };
+    fetchProfile();
+  }, []);
 
   return (
     <View className={`flex-row justify-between items-center mb-6 ${className}`}>
