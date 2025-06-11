@@ -1,8 +1,16 @@
-import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import BottomNavbar from "@/components/ui/NavBar";
 import { useEffect, useState } from "react";
 import api from "@/utils/api";
 import { getToken } from "@/utils/auth";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
   const [tempoSemDormir, setTempoSemDormir] = useState<string | null>(null);
@@ -51,16 +59,23 @@ export default function HomeScreen() {
     fetchData();
   }, []);
 
+  const router = useRouter();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="px-6 pt-24">
         {/* Header */}
         <View className="flex-row justify-between items-center mb-6">
-          <Text className="text-3xl font-bold text-purple-600">Bem vindo</Text>
-          <Image
-            source={require("@/assets/images/profile_photo.png")}
-            className="w-10 h-10 rounded-full"
-          />
+          <Text className="text-3xl font-bold text-purple-600">Bem vindo(a)</Text>
+          <TouchableOpacity
+            onPress={() => router.push("/profile")}
+            className=""
+          >
+            <Image
+              source={require("@/assets/images/profile_photo.png")}
+              className="w-10 h-10 rounded-full"
+            />
+          </TouchableOpacity>
         </View>
 
         {/* Tempo sem dormir */}

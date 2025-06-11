@@ -1,59 +1,67 @@
-import { router } from "expo-router";
-import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { router } from "expo-router";
+import { Alert, Linking, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
 export default function BottomNavbar() {
+  const handleMonitoringPress = async () => {
+    const url = "https://face-detection-app-pi.netlify.app/";
+    
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert("Error", "Unable to open the URL");
+      }
+    } catch (error) {
+      Alert.alert("Error", "An error occurred while trying to open the URL");
+    }
+  };
+
   return (
-    <View
-      className="absolute bottom-0 left-0 right-0 h-20
-     bg-white border-t border-gray-200 flex-row 
-       justify-around items-center"
-    >
-      <TouchableOpacity onPress={() => router.push("/home")}>
-        <View className="items-center">
-          <Feather name="home" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Início</Text>
-        </View>
+    <SafeAreaView className="flex-row justify-around items-center bg-white py-3 
+                     px-4 border-t border-gray-200">
+      <TouchableOpacity
+        onPress={() => router.push("/home")}
+        className="flex-1 items-center"
+      >
+        <Feather name="home" size={24} color="#6B7280" />
+        <Text className="text-xs text-gray-500 mt-1">Início</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push("/search")}>
-        <View className="items-center">
-          <Feather name="search" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Buscar</Text>
-        </View>
+      <TouchableOpacity
+        onPress={() => router.push("/search")}
+        className="flex-1 items-center"
+      >
+        <Feather name="search" size={24} color="#6B7280" />
+        <Text className="text-xs text-gray-500 mt-1">Buscar</Text>
       </TouchableOpacity>
 
-      {/* <TouchableOpacity
+      {/*  
+      <TouchableOpacity
         onPress={() => {}}
         className="bg-purple-600 p-4 rounded-full -mt-10 shadow-md"
       >
-        <Ionicons name="apps-outline" size={28} color="white" />
-      </TouchableOpacity> */}
+        <Feather name="plus" size={24} color="white" />
+      </TouchableOpacity>
+      */}
 
-      <TouchableOpacity onPress={() => router.push("/monitoring")}>
-        <View className="items-center">
-          <FontAwesome5 name="low-vision" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Monitoramento</Text>
-        </View>
+      <TouchableOpacity
+        onPress={handleMonitoringPress}
+        className="flex-1 items-center"
+      >
+        <FontAwesome5 name="eye" size={24} color="#6B7280" />
+        <Text className="text-xs text-gray-500 mt-1">Monitoramento</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push("/profile")}>
-        <View className="items-center">
-          <Feather name="user" size={24} color="#6B7280" />
-          <Text className="text-xs text-gray-500">Perfil</Text>
-        </View>
+      <TouchableOpacity
+        onPress={() => router.push("/profile")}
+        className="flex-1 items-center"
+      >
+        <Feather name="user" size={24} color="#6B7280" />
+        <Text className="text-xs text-gray-500 mt-1">Perfil</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
-
-// import Svg, { Circle, Rect } from "react-native-svg";
-// import {
-
-// } from "@/assets/png-icons/test.svg";
-
-// const NavBar = (props: any) => {
-//   return <Svg height="50%" width="50%" viewBox="0 0 100 100" {...props}></Svg>;
-// };

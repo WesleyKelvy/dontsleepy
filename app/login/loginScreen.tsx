@@ -2,7 +2,7 @@ import { router } from "expo-router";
 // import { useQuery } from '@tanstack/react-query';
 import api from "@/utils/api";
 import { saveToken } from "@/utils/auth";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,6 +10,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
   View,
 } from "react-native";
 import Button from "../../components/ui/Button";
@@ -94,9 +95,13 @@ const LoginScreen = () => {
       >
         <View className="flex-1 p-6 justify-between">
           <View className="items-center mt-10 mb-6">
-            <View className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center">
+            <Image
+              source={require("@/assets/images/Dont-Sleepy-Logo.png")}
+              className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center"
+            />
+            {/* <View className="bg-gray-200 rounded-lg w-full h-32 items-center justify-center">
               <Text className="text-3xl font-bold">LOGO</Text>
-            </View>
+            </View> */}
           </View>
 
           <View className="mb-6">

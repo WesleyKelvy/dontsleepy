@@ -137,7 +137,7 @@ export default function ProfileScreen() {
         )}
       </ScrollView>
       {/* Botão de logout */}
-      <View className="items-center mt-8 mb-24 border-t pt-3 border-t-gray-400 ">
+      <View className="items-center border-t pt-3 pb-3 border-t-gray-400 ">
         <TouchableOpacity
           className="mb-6 bg-purple-600 rounded-lg py-3 px-4"
           onPress={handleEdit}
