@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Image,
   SafeAreaView,
   ScrollView,
@@ -8,9 +9,9 @@ import {
 } from "react-native";
 import BottomNavbar from "@/components/ui/NavBar";
 import { useEffect, useState } from "react";
-import api from "@/utils/api";
 import { getToken } from "@/utils/auth";
 import { useRouter } from "expo-router";
+import api from "@/utils/api";
 
 export default function HomeScreen() {
   const [tempoSemDormir, setTempoSemDormir] = useState<string | null>(null);
@@ -66,7 +67,9 @@ export default function HomeScreen() {
       <ScrollView className="px-6 pt-24">
         {/* Header */}
         <View className="flex-row justify-between items-center mb-6">
-          <Text className="text-3xl font-bold text-purple-600">Bem vindo(a)</Text>
+          <Text className="text-3xl font-bold text-purple-600">
+            Bem vindo(a)
+          </Text>
           <TouchableOpacity
             onPress={() => router.push("/profile")}
             className=""
@@ -102,7 +105,7 @@ export default function HomeScreen() {
             Minhas últimas sonecas
           </Text>
           {loading ? (
-            <Text className="text-gray-400">Carregando...</Text>
+            <ActivityIndicator color={"blue"} />
           ) : erro && ultimasSonecas.length === 0 ? (
             // Se erro e array vazio, mostra mensagem amigável
             <Text className="text-gray-500">Sem registros ainda.</Text>
