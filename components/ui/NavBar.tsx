@@ -1,12 +1,19 @@
 import { Feather } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { router } from "expo-router";
-import { Alert, Linking, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Linking,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function BottomNavbar() {
   const handleMonitoringPress = async () => {
     const url = "https://face-detection-app-pi.netlify.app/";
-    
+
     try {
       const supported = await Linking.canOpenURL(url);
       if (supported) {
@@ -20,8 +27,10 @@ export default function BottomNavbar() {
   };
 
   return (
-    <SafeAreaView className="flex-row justify-around items-center bg-white py-3 
-                     px-4 border-t border-gray-200">
+    <SafeAreaView
+      className="flex-row justify-around items-center bg-white py-3 
+                     px-4 border-t border-gray-200"
+    >
       <TouchableOpacity
         onPress={() => router.push("/home")}
         className="flex-1 items-center"
@@ -34,8 +43,8 @@ export default function BottomNavbar() {
         onPress={() => router.push("/search")}
         className="flex-1 items-center"
       >
-        <Feather name="search" size={24} color="#6B7280" />
-        <Text className="text-xs text-gray-500 mt-1">Buscar</Text>
+        <Feather name="shopping-cart" size={24} color="#6B7280" />
+        <Text className="text-xs text-gray-500 mt-1">Loja</Text>
       </TouchableOpacity>
 
       {/*  

@@ -11,11 +11,14 @@ import { useEffect, useState } from "react";
 import api from "@/utils/api";
 import { getToken } from "@/utils/auth";
 import { useRouter } from "expo-router";
+import { Sonecas } from "@/types/sonecas";
+import { format, formatDistanceStrict, subDays, subHours } from "date-fns";
+import { ptBR } from "date-fns/locale/pt-BR";
 
 export default function HomeScreen() {
   const [tempoSemDormir, setTempoSemDormir] = useState<string | null>(null);
-  const [ultimasSonecas, setUltimasSonecas] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [ultimasSonecas, setUltimasSonecas] = useState<Sonecas[]>([]);
+  const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,7 +59,17 @@ export default function HomeScreen() {
         setLoading(false);
       }
     };
-    fetchData();
+    // fetchData();
+
+    setUltimasSonecas([
+      { id: 1, startAt: subHours(new Date(), 4), endAt: new Date() },
+    ]);
+
+    setTempoSemDormir(
+      formatDistanceStrict(new Date(), subHours(new Date(), 20), {
+        locale: ptBR,
+      })
+    );
   }, []);
 
   const router = useRouter();
@@ -66,7 +79,9 @@ export default function HomeScreen() {
       <ScrollView className="px-6 pt-24">
         {/* Header */}
         <View className="flex-row justify-between items-center mb-6">
-          <Text className="text-3xl font-bold text-purple-600">Bem vindo(a)</Text>
+          <Text className="text-3xl font-bold text-purple-600">
+            Bem vindo(a)
+          </Text>
           <TouchableOpacity
             onPress={() => router.push("/profile")}
             className=""
@@ -119,25 +134,27 @@ export default function HomeScreen() {
                 <Text className="text-gray-700">
                   Dia:{" "}
                   <Text className="font-bold">
-                    {soneca.dia || soneca.start?.slice(0, 10) || "-"}
+                    {soneca.startAt.toLocaleDateString("pt-BR")}
                   </Text>
                 </Text>
                 <Text className="text-gray-700">
                   Início:{" "}
                   <Text className="font-bold">
-                    {soneca.inicio || soneca.start?.slice(11, 16) || "-"}
+                    {format(soneca.startAt, "HH:mm")}
                   </Text>
                 </Text>
                 <Text className="text-gray-700">
                   Fim:{" "}
                   <Text className="font-bold">
-                    {soneca.fim || soneca.end?.slice(11, 16) || "-"}
+                    {format(soneca.endAt, "HH:mm")}
                   </Text>
                 </Text>
                 <Text className="text-gray-700">
                   Duração:{" "}
                   <Text className="font-bold">
-                    {soneca.duracao || soneca.duration || "-"}
+                    {formatDistanceStrict(soneca.endAt, soneca.startAt, {
+                      locale: ptBR,
+                    })}
                   </Text>
                 </Text>
               </View>
